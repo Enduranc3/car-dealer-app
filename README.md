@@ -49,12 +49,12 @@ npm run dev
 
 ```
 src/
-├── app/
-│   ├── components/     # Reusable components
-│   ├── result/         # Dynamic routes for search results
-│   ├── globals.css     # Global styles
-│   ├── layout.tsx      # Root layout
-│   └── page.tsx        # Home page
+└── app/
+    ├── components/     # Reusable components
+    ├── result/         # Dynamic routes for search results
+    ├── globals.css     # Global styles
+    ├── layout.tsx      # Root layout
+    └── page.tsx        # Home page
 ```
 
 ## API Integration
