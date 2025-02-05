@@ -28,7 +28,7 @@ A Next.js application that allows users to search for vehicle models by make and
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/car-dealer-app.git
+git clone https://github.com/Enduranc3/car-dealer-app.git
 ```
 
 2. Install dependencies:
