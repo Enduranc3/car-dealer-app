@@ -13,10 +13,10 @@ interface ModelResponse {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     makeId: string;
     year: string;
-  };
+  }>;
 }
 
 export const dynamicParams = true;
@@ -71,8 +71,7 @@ export async function generateStaticParams() {
 }
 
 export default async function ResultPage({ params }: PageProps) {
-  const makeId = params.makeId;
-  const year = params.year;
+  const { makeId, year } = await params;
 
   if (!makeId || !year || isNaN(Number(makeId)) || isNaN(Number(year))) {
     return (
@@ -124,6 +123,11 @@ export default async function ResultPage({ params }: PageProps) {
       );
     }
 
+    const uniqueModels = models.filter(
+      (model, index, self) =>
+        index === self.findIndex(m => m.Model_ID === model.Model_ID)
+    );
+
     return (
       <div className="min-h-screen bg-gray-50 p-8">
         <div className="max-w-4xl mx-auto">
@@ -141,7 +145,7 @@ export default async function ResultPage({ params }: PageProps) {
 
           <Suspense fallback={<LoadingState />}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {models.map((model: Model) => (
+              {uniqueModels.map((model: Model) => (
                 <div
                   key={model.Model_ID}
                   className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
